@@ -32,3 +32,16 @@ button {
 button:hover {
   background: #feb47b;
 }
+#mood-box button {
+  margin: 5px;
+  padding: 8px 15px;
+  border: none;
+  background: #6a11cb;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#mood-box button:hover {
+  background: #2575fc;
+}

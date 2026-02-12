@@ -41,4 +41,13 @@ function setMood(mood) {
   } else if (mood === 'focused') {
     body.style.background = "linear-gradient(to right, #d4fc79, #96e6a1)";
   }
+  // Save mood choice in localstorage
+  localStorage.setItem("selectedMood", mood);
 }
+// Load saved mood when page opens
+window.onLoad = function() {
+  const savedMood = localStorage.getItem("selectedMood");
+  if (savedMood) {
+    setMood(savedMood);
+  }
+};

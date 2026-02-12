@@ -12,16 +12,40 @@ function newQuote() {
   document.getElementById("quote").innerText = quotes[randomIndex];
 }
 
-// To-Do List
+// To-Do List with persistence
 function addTask() {
   const input = document.getElementById("todo-input");
   const task = input.value.trim();
   if (task) {
     const li = document.createElement("li");
     li.innerText = task;
-    li.onclick = () => li.remove(); // click to remove task
+    li.onclick = () => {
+      li.remove();// click to remove task 
+      saveTasks();
+    };
     document.getElementById("todo-list").appendChild(li);
     input.value = "";
+    saveTasks(); //save after adding
+  }
+}
+function saveTasks() {
+  const tasks = [];
+  const items = document.querySelectorAll("#todo-list li);
+  item.forEach(item => tasks.push(item.innerText));
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+function loadTasks() {
+  const savedTasks = JSON.parse(localStorage.getItem("tasks"));
+  if (savedTasks) {
+    savedTasks.forEach(task => {
+      const li = document.createElement("li");
+      li.innerText = task;
+      li.onclick = () => {
+        li.remove();
+        saveTasks();
+      };
+      document.getElementById("todo-list").appendChild(li);
+    });
   }
 }
 
@@ -31,7 +55,8 @@ function updateClock() {
   document.getElementById("clock").innerText = now.toLocaleTimeString();
 }
 setInterval(updateClock, 1000);
-// Mood Selector
+
+// Mood Selector with persistence
 function setMood(mood) {
   const body = document.body;
   if (mood === 'happy') {
@@ -44,10 +69,11 @@ function setMood(mood) {
   // Save mood choice in localstorage
   localStorage.setItem("selectedMood", mood);
 }
-// Load saved mood when page opens
+// Load saved mood and tasks when page opens
 window.onLoad = function() {
   const savedMood = localStorage.getItem("selectedMood");
   if (savedMood) {
     setMood(savedMood);
   }
+  loadTasks();
 };

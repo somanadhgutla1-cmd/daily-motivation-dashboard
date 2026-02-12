@@ -20,20 +20,22 @@ function addTask() {
     const li = document.createElement("li");
     li.innerText = task;
     li.onclick = () => {
-      li.remove();// click to remove task 
+      li.remove();
       saveTasks();
     };
     document.getElementById("todo-list").appendChild(li);
     input.value = "";
-    saveTasks(); //save after adding
+    saveTasks(); // save after adding
   }
 }
+
 function saveTasks() {
   const tasks = [];
-  const items = document.querySelectorAll("#todo-list li);
-  item.forEach(item => tasks.push(item.innerText));
+  const items = document.querySelectorAll("#todo-list li");
+  items.forEach(item => tasks.push(item.innerText));
   localStorage.setItem("tasks", JSON.stringify(tasks));
 }
+
 function loadTasks() {
   const savedTasks = JSON.parse(localStorage.getItem("tasks"));
   if (savedTasks) {
@@ -56,28 +58,30 @@ function updateClock() {
 }
 setInterval(updateClock, 1000);
 
-// Mood Selector with persistence
+// Mood Selector with persistence (3 distinct colors)
 function setMood(mood) {
   const body = document.body;
   if (mood === 'happy') {
-    body.style.background = "linear-gradient(to right, #ffecd2, #fcb69f)";
+    body.style.background = "linear-gradient(to right, #ff9a9e, #fecfef)"; // pink tones
   } else if (mood === 'calm') {
-    body.style.background = "linear-gradient(to right, #a1c4fd, #c2e9fb)";
+    body.style.background = "linear-gradient(to right, #a1c4fd, #c2e9fb)"; // blue tones
   } else if (mood === 'focused') {
-    body.style.background = "linear-gradient(to right, #d4fc79, #96e6a1)";
+    body.style.background = "linear-gradient(to right, #fddb92, #d1fdff)"; // yellow tones
   }
-  // Save mood choice in localstorage
   localStorage.setItem("selectedMood", mood);
 }
+
 // Load saved mood and tasks when page opens
-window.onLoad = function() {
+window.onload = function() {
   // Restore mood
   const savedMood = localStorage.getItem("selectedMood");
   if (savedMood) {
     setMood(savedMood);
   }
-  //Restore tasks
+
+  // Restore tasks
   loadTasks();
-  //start clock immediately
+
+  // Start clock immediately
   updateClock();
 };

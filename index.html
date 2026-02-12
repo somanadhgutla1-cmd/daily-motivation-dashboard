@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Daily Motivation Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>🌟 Daily Motivation Dashboard 🌟</h1>
+  
+  <!-- Quote Section -->
+  <div id="quote-box">
+    <p id="quote">Click the button to get inspired!</p>
+    <button onclick="newQuote()">Get Motivation</button>
+  </div>
+
+  <!-- To-Do Section -->
+  <div id="todo-box">
+    <h2>My To-Do List</h2>
+    <input type="text" id="todo-input" placeholder="Add a task">
+    <button onclick="addTask()">Add</button>
+    <ul id="todo-list"></ul>
+  </div>
+
+  <!-- Clock Section -->
+  <div id="clock-box">
+    <h2>Current Time</h2>
+    <p id="clock"></p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

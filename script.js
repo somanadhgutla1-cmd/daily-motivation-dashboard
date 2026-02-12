@@ -31,3 +31,14 @@ function updateClock() {
   document.getElementById("clock").innerText = now.toLocaleTimeString();
 }
 setInterval(updateClock, 1000);
+// Mood Selector
+function setMood(mood) {
+  const body = document.body;
+  if (mood === 'happy') {
+    body.style.background = "linear-gradient(to right, #ffecd2, #fcb69f)";
+  } else if (mood === 'calm') {
+    body.style.background = "linear-gradient(to right, #a1c4fd, #c2e9fb)";
+  } else if (mood === 'focused') {
+    body.style.background = "linear-gradient(to right, #d4fc79, #96e6a1)";
+  }
+}

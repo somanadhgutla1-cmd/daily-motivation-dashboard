@@ -71,9 +71,13 @@ function setMood(mood) {
 }
 // Load saved mood and tasks when page opens
 window.onLoad = function() {
+  // Restore mood
   const savedMood = localStorage.getItem("selectedMood");
   if (savedMood) {
     setMood(savedMood);
   }
+  //Restore tasks
   loadTasks();
+  //start clock immediately
+  updateClock();
 };
